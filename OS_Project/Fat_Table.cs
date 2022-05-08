@@ -54,7 +54,6 @@ namespace OS_Project
                 if (f[i] == 0)
                 {
                     idx = i;
-                    Console.WriteLine("the block " + i + " is available");
                     break;
                 }
             }

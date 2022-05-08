@@ -13,7 +13,7 @@ namespace OS_Project
     {
         public static directory current=new directory();
         public static string curpath = "";
-        
+        //Change to our Vallues Controller
         public static void Main(string[] args)
         {
             Virual_Disk.intialize();

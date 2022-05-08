@@ -66,13 +66,20 @@ namespace OS_Project
             int index = Program.current.search_directory(name);
             if (index != -1)
             {
+                
                 if (Program.current.Directory_Table[index].fileAttribute == '1')
                 {
-                    int fc = Program.current.Directory_Table[index].firstCluster;
-                    directory d = new directory(Program.current, name, '1', fc, 0);
-                    d.write_directory();
-                    d.delete_directory();
-                    Console.WriteLine("directory deleted");
+                    
+                    Console.WriteLine("are you sure that you want complete " + name + ", please enter Y for yes or N for no:");
+                    string s=Console.ReadLine().ToUpper();
+                    if (s == "Y")
+                    {
+                        int fc = Program.current.Directory_Table[index].firstCluster;
+                        directory d = new directory(Program.current, name, '1', fc, 0);
+                        d.write_directory();
+                        d.delete_directory();
+                        Console.WriteLine("directory deleted");
+                    }
                 }
                 else
                 {
@@ -143,7 +150,7 @@ namespace OS_Project
                 else
                 {
                     string na=new string(Program.current.Directory_Table[i].filename);
-                    Console.WriteLine("<DIR>        " + na+"   "+ Program.current.Directory_Table[i].firstCluster);
+                    Console.WriteLine("<DIR>        " + na);
                     numd++;
                 }
             }
