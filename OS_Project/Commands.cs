@@ -22,6 +22,23 @@ namespace OS_Project
             string[] s = y.Split(' ');
             return s;
         }
+
+        public static string getpath()
+        {
+            return Program.curpath;
+        }
+
+        public static void clear()
+        {
+            Console.Clear();
+        }
+
+        public static void exit()
+        {
+
+            Environment.Exit(0);
+        }
+
         public static void md(string name)
         {
             int position = Program.current.search_directory(name);
@@ -43,6 +60,7 @@ namespace OS_Project
                 Console.WriteLine("directory already exists");
             }
         }
+        
         public static void rd(string name)
         {
             int index = Program.current.search_directory(name);
@@ -54,10 +72,11 @@ namespace OS_Project
                     directory d = new directory(Program.current, name, '1', fc, 0);
                     d.write_directory();
                     d.delete_directory();
+                    Console.WriteLine("directory deleted");
                 }
                 else
                 {
-                    Console.WriteLine("cannot delete file");
+                    Console.WriteLine("cannot delete directory");
                 }
             }
             else
@@ -65,9 +84,9 @@ namespace OS_Project
                 Console.WriteLine("Not Exist");
             }
         }
+
         public static void cd(string name)
         {
-
             int index = Program.current.search_directory(name);
             if (index != -1)
             {
@@ -106,14 +125,7 @@ namespace OS_Project
                     Console.WriteLine("Not Exist");
             }
         }
-        public static void clear()
-        {
-            Console.Clear();
-        }
-        public static string getpath()
-        {
-            return Program.curpath;
-        }
+        
         public static void dir()
         {
             Program.current.read_direcotry();
@@ -132,8 +144,6 @@ namespace OS_Project
                 {
                     string na=new string(Program.current.Directory_Table[i].filename);
                     Console.WriteLine("<DIR>        " + na+"   "+ Program.current.Directory_Table[i].firstCluster);
-                    
-
                     numd++;
                 }
             }
@@ -144,9 +154,20 @@ namespace OS_Project
         {
             if (arg == "")
             {
-                Console.WriteLine("\ncls         Clears the screen.\n");
-                Console.WriteLine("quit        Quits the CMD.EXE program (command interpreter) or the current batch script.\n");
-                Console.WriteLine("help        Provides help information for Windows commands.\n");
+                Console.WriteLine();
+                Console.WriteLine("cd            Displays the name of or changes the current directory.\n");
+                Console.WriteLine("cls           Clears the screen.\n");
+                Console.WriteLine("dir           Displays a list of files and subdirectories in a directory.\n");
+                Console.WriteLine("quit          Quits the CMD.EXE program (command interpreter) or the current batch script.\n");
+                Console.WriteLine("copy          Copies one or more files to another location.\n");
+                Console.WriteLine("del           Deletes one or more files.\n");
+                Console.WriteLine("help          Provides help information for Windows commands.\n");
+                Console.WriteLine("md            Creates a directory.\n");
+                Console.WriteLine("rd            Removes a directory.\n");
+                Console.WriteLine("rename        Renames a file or files.\n");
+                Console.WriteLine("type          Displays the contents of a text file.\n");
+                Console.WriteLine("import        import text file(s) from your computer.\n");
+                Console.WriteLine("export        export text file(s) to your computer.\n");
             }
             else
             {
@@ -163,18 +184,53 @@ namespace OS_Project
                     Console.WriteLine("\nhelp        Provides help information for Windows commands.\nHELP [command]\n" +
                         " command - displays help information on that command.\n");
                 }
-              
+                else if (arg == "dir")
+                {
+                    Console.WriteLine("dir           Displays a list of files and subdirectories in a directory.\n");
+                }
+                else if (arg == "copy")
+                {
+                    Console.WriteLine("copy          Copies one or more files to another location.\n");
+                }
+                else if (arg == "del")
+                {
+                    Console.WriteLine("del           Deletes one or more files.\n");
+                }
+                else if (arg == "help")
+                {
+                    Console.WriteLine("dir           Displays a list of files and subdirectories in a directory.\n");
+                }
+                else if (arg == "md")
+                {
+                    Console.WriteLine("md            Creates a directory.\n");
+                }
+                else if (arg == "rd")
+                {
+                    Console.WriteLine("rd            Removes a directory.\n");
+                }
+                else if (arg == "rename")
+                {
+                    Console.WriteLine("rename        Renames a file or files.\n");
+                }
+                else if (arg == "type")
+                {
+                    Console.WriteLine("type          Displays the contents of a text file.\n");
+                }
+                else if (arg == "import")
+                {
+                    Console.WriteLine("import        import text file(s) from your computer.\n");
+                }
+                else if (arg == "export")
+                {
+                    Console.WriteLine("export        export text file(s) to your computer.\n");
+                }
                 else
                 {
                     Console.WriteLine($"\nThis command is not supported by the help utility.  Try { arg} /? .\n");
                 }
             }
         }
-        public static void exit()
-        {
-
-            Environment.Exit(0);
-        }
+        
         public static void command(string[] str, string orgi)
         {
             if (str[0] == "quit")
@@ -205,16 +261,15 @@ namespace OS_Project
                 }
                 else
                 {
-                    Console.WriteLine("error");
+                    Console.WriteLine("enter correct path");
                 }
-                //-------------------
             }
             else if (str[0] == "md")
             {
                 if (str.Length == 2)
                     md(str[1]);
                 else
-                    Console.WriteLine("error");
+                    Console.WriteLine("enter correct name");
             }
             else if (str[0] == "dir") {
                 dir();
@@ -224,7 +279,7 @@ namespace OS_Project
                 if (str.Length > 1)
                     rd(str[1]);
                 else
-                    Console.WriteLine("error");
+                    Console.WriteLine("enter correct name");
             }
             else if (str[0] == "")
             {

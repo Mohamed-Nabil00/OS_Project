@@ -18,10 +18,7 @@ namespace OS_Project
         { 
             parent = p;
         }
-        public void addd(Directory_Entry d)
-        {
-            Directory_Table.Add(d);
-        }
+        
         public directory get_dirctory()
         {
             directory d = new directory();

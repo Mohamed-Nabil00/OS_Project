@@ -18,8 +18,8 @@ namespace OS_Project
         public static void Main(string[] args)
         {
             Virual_Disk.intialize();
-            Fat_Table.print();
             string cmd = "", arg = "";
+            Virual_Disk.get_block(6);
             while (true)
             {
                 Console.Write(Commands.getpath() + '>');

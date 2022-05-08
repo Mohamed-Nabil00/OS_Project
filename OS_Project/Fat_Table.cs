@@ -44,10 +44,7 @@ namespace OS_Project
             Virtual_disk_text.Write(bt, 0, bt.Length);
             Virtual_disk_text.Close();
         }
-        public static void update()
-        {
 
-        }
         public static int available_block()//first available block else -1
         {
             int[] f = get();
