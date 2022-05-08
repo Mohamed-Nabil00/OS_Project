@@ -49,7 +49,7 @@ namespace OS_Project
             }
             sw.Close();
         }
-        public static void write_block(byte[] data, int index)// لو البيانات اكبر ههمل الباقي //seek(index*1024)علشان يوصل لاول عنصر في البلوك
+        public static void write_block(byte[] data, int index)
         {   
             FileStream Virtual_disk_text = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite);
             Virtual_disk_text.Seek(1024 * index, SeekOrigin.Begin);

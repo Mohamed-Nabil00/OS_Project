@@ -15,7 +15,7 @@ namespace OS_Project
         public int firstCluster; // 4 byte
 
         public Directory_Entry(){}
-        public Directory_Entry(string Name, char Attr, int fc,int size)//------------------------------------
+        public Directory_Entry(string Name, char Attr, int fc,int size)
         {
             fileAttribute = Attr;
             if (fc == 0)
@@ -47,7 +47,6 @@ namespace OS_Project
         { 
 
             byte[] data = new byte[32];
-            //data = Encoding.ASCII.GetBytes(filename);
             for (int i = 0; i < filename.Length; i++)
             {
                 data[i] = Convert.ToByte(filename[i]);
@@ -71,8 +70,7 @@ namespace OS_Project
             return data;
         }
        public Directory_Entry get_directory_entry(byte[] data)
-        { //convert the array of bytes back to the original values
-            //List<byte[]> l = new List<byte[]>();
+        { 
             byte[] e = new byte[4];
             Directory_Entry dir = new Directory_Entry();
             int i;

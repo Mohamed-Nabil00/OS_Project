@@ -15,7 +15,7 @@ namespace OS_Project
             for (int i = 0; i < 5; i++)
                 fat[i] = -1;
         }
-        public static int[] get()//open ,seek, read from file,convert byte->int
+        public static int[] get()
         {
             string path = FileName;
             FileStream Virtual_disk_text = new FileStream(path, FileMode.Open, FileAccess.ReadWrite);
@@ -26,7 +26,7 @@ namespace OS_Project
             Virtual_disk_text.Close();
             return fat;
         }
-        public static void print()//call get()
+        public static void print()
         {
             int[] f = get();
             for (int i = 0; i < 1024; i++)
@@ -34,7 +34,7 @@ namespace OS_Project
                 Console.WriteLine(i + " " + f[i]);
             }
         }
-        public static void write()//store fat in file ->open file , seek(1024,seekorgin.begin) move in file,block copy->convert int->byte then write
+        public static void write()
         {
             string path = FileName;
             FileStream Virtual_disk_text = new FileStream(path, FileMode.Open, FileAccess.ReadWrite);
@@ -45,7 +45,7 @@ namespace OS_Project
             Virtual_disk_text.Close();
         }
 
-        public static int available_block()//first available block else -1
+        public static int available_block()
         {
             int[] f = get();
             int idx = 0;
@@ -60,31 +60,28 @@ namespace OS_Project
             }
             return idx;
         }
-        public static int get_next(int index)//return value of fat[index] ->where rest of the data store
+        public static int get_next(int index)
         {
             int[] f = get();
             return f[index];
         }
-        public static void set_next(int index, int value)//place where rest of the data store
+        public static void set_next(int index, int value)
         {
             fat[index] = value;
         }
         public static int available_blocks()
         {
             int[] fa = get();
-            //Console.WriteLine("Available Blocks :");
+         
             int cnt = 0;
             for (int i = 5; i < 1024; i++)
             {
                 if (fa[i] == 0)
                 {
                     cnt++;
-                   // Console.WriteLine(i);
                 }
 
             }
-            //int free_space = cnt * 1024;
-            //Console.WriteLine("free space : " + free_space);//free_space///
             return cnt;
         }
         public static int get_free_space()

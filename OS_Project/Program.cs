@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//يشوف سيز الاراي ولو اكتر من عدد العناصر اللي هوه محتاجها نطبعه رساله ازاي يدخل الانبوت صح
 namespace OS_Project
 {
     class Program
